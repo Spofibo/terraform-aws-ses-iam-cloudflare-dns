@@ -49,13 +49,13 @@ No modules.
 | [cloudflare_record.ses_mailfrom_mx_verification](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
 | [cloudflare_record.ses_mailfrom_spf_verification](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
 | [cloudflare_record.ses_txt_verification](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/resources/record) | resource |
+| [cloudflare_zones.this](https://registry.terraform.io/providers/cloudflare/cloudflare/latest/docs/data-sources/zones) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_cf_api_token"></a> [cf\_api\_token](#input\_cf\_api\_token) | Cloudflare API Token | `string` | n/a | yes |
-| <a name="input_cf_zone_id"></a> [cf\_zone\_id](#input\_cf\_zone\_id) | Cloudflare Zone ID | `string` | n/a | yes |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | Domain name | `string` | n/a | yes |
 | <a name="input_email_identity"></a> [email\_identity](#input\_email\_identity) | AWS Email identity | `string` | `""` | no |
 | <a name="input_name_prefix"></a> [name\_prefix](#input\_name\_prefix) | Name prefix | `string` | n/a | yes |

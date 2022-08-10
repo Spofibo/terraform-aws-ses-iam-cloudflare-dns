@@ -16,15 +16,10 @@ variable "email_identity" {
 
 variable "ses_region" {
   description = ""
-  type = string
+  type        = string
 }
 
 variable "cf_api_token" {
   description = "Cloudflare API Token"
-  type        = string
-}
-
-variable "cf_zone_id" {
-  description = "Cloudflare Zone ID"
   type        = string
 }
