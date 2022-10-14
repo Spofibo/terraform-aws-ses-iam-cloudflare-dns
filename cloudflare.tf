@@ -10,30 +10,30 @@ data "cloudflare_zones" "this" {
 resource "cloudflare_record" "ses_txt_verification" {
   zone_id = data.cloudflare_zones.this.zones[0].id
   name    = "_amazonses.${aws_ses_domain_identity.this.domain}"
-  type    = "TXT"
   value   = aws_ses_domain_identity.this.verification_token
+  type    = "TXT"
 }
 
 resource "cloudflare_record" "ses_dkim_verification" {
-  for_each = toset(aws_ses_domain_dkim.this.dkim_tokens)
+  count = 3
 
   zone_id = data.cloudflare_zones.this.zones[0].id
-  name    = "${each.value}._domainkey.${var.domain_name}"
+  name    = "${element(aws_ses_domain_dkim.this.dkim_tokens, count.index)}._domainkey.${aws_ses_domain_identity.this.domain}"
+  value   = "${element(aws_ses_domain_dkim.this.dkim_tokens, count.index)}.dkim.amazonses.com"
   type    = "CNAME"
-  value   = "${each.value}.dkim.amazonses.com"
 }
 
 resource "cloudflare_record" "ses_mailfrom_mx_verification" {
   zone_id  = data.cloudflare_zones.this.zones[0].id
   name     = aws_ses_domain_mail_from.this.mail_from_domain
+  value    = "feedback-smtp.${var.ses_region}.amazonses.com"
   type     = "MX"
   priority = 10
-  value    = "feedback-smtp.${var.ses_region}.amazonses.com"
 }
 
 resource "cloudflare_record" "ses_mailfrom_spf_verification" {
   zone_id = data.cloudflare_zones.this.zones[0].id
   name    = aws_ses_domain_mail_from.this.mail_from_domain
-  type    = "TXT"
   value   = "v=spf1 include:amazonses.com -all"
+  type    = "TXT"
 }
