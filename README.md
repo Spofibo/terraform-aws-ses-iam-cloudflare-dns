@@ -1,5 +1,6 @@
 # Terraform module for AWS SES and IAM user configuration
-This terraform module creates an SES Domain Identity, an IAM user with its proper policy to interact with SES, and access keys to programmatically access it.
+Creates an SES Domain Identity, an IAM user with its proper policy to interact with SES, and access keys for programmatic access.
+Cloudflare it's used to validate the domain authenticity.
 
 Example usage of this module is to enact the necessary configuration for the Mailster plugin on WordPress.
 
